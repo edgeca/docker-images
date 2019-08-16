@@ -11,5 +11,6 @@ python3-pip
 python3-setuptools
 software-properties-common
 tesseract-ocr
+unpaper
 unzip
 wget
