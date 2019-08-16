@@ -25,5 +25,5 @@ tensorflow==1.12.0
 tensorflow-serving-api==1.12.0
 tensorflow-estimator==1.13.0
 TiffCapture==0.1.6
-Unicode==1.1.1
+Unidecode==1.1.1
 XlsxWriter>=1.1.1
