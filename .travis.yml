@@ -8,49 +8,8 @@ jobs:
   include:
     - stage: build
       before_install:
-        - cd vision/api
-        - docker build -t niacainfosys/vision-api-gpu-base:1.3.0 -f vision-api-gpu-base.Dockerfile .
+        - cd vision/conda
+        - docker build -t niacainfosys/vision-conda-gpu-base -f vision-conda-gpu-base.Dockerfile .
       script:
-        - docker run niacainfosys/vision-api-gpu-base:1.3.0 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/vision-api-gpu-base:1.3.0
-    - stage: build
-      before_install:
-        - cd vision/api
-        - docker build -t niacainfosys/vision-api-base:1.3.0 -f vision-api-base.Dockerfile .
-      script:
-        - docker run niacainfosys/vision-api-base:1.3.0 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/vision-api-base:1.3.0
-    - stage: build
-      before_install:
-        - cd vision/workbench
-        - docker build -t niacainfosys/vision-workbench-base:1.3.0 -f vision-workbench-base.Dockerfile .
-      script:
-        - docker run niacainfosys/vision-workbench-base:1.3.0 /bin/bash -c "python --version; pip list; apt list --installed"
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/vision-workbench-base:1.3.0
-    - stage: build
-      before_install:
-        - cd vision/workflows
-        - docker build -t niacainfosys/vision-workflows-base:1.3.0 -f vision-workflows-base.Dockerfile .
-      script:
-        - docker run niacainfosys/vision-workflows-base:1.3.0 /bin/bash -c "python --version; pip list; apt list --installed"
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/vision-workflows-base:1.3.0
-    - stage: build
-      before_install:
-        - cd vision/tfserving
-        - docker build -t niacainfosys/vision-tfserving-base:1.3.0 -f vision-tfserving-base.Dockerfile .
-      script:
-        - docker run niacainfosys/vision-tfserving-base:1.3.0 /bin/bash -c "python --version; pip list; apt list --installed"
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/vision-tfserving-base:1.3.0
-    - stage: build
-      before_install:
-        - cd vision/tfserving_mkl
-        - docker build -t niacainfosys/tfserving-mkl:1.3.0 -f tfserving-mkl.Dockerfile .
-      script:
-        - docker run niacainfosys/tfserving-mkl:1.3.0 /bin/bash -c "apt list --installed"
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/tfserving-mkl:1.3.0
+        - docker push niacainfosys/vision-api-gpu-base
