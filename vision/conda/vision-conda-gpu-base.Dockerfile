@@ -1,14 +1,20 @@
-#FROM continuumio/miniconda3:4.7.10
-# Install miniconda
 FROM ubuntu:18.04
+# Set non-interactive for linux packages installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Check OS version
+RUN cat /etc/os-release
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
 
-RUN apt-get update --fix-missing && \
-    apt-get install -y wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion && \
-    apt-get clean
+ADD . /install
+WORKDIR /install
 
+# Install linux packages
+RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends && apt-get clean
+
+# Install miniconda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
@@ -19,23 +25,10 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.7.10-Linux-x86
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
     /opt/conda/bin/conda clean -afy
-# Set non-interactive for linux packages installation
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Check OS version
-RUN cat /etc/os-release
 
 # Change to python 3.6
 RUN conda update conda
 RUN conda install python=3.6
-RUN python --version
-RUN conda --version
-
-ADD . /install
-WORKDIR /install
-
-# Install linux packages
-RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends
 
 # Install tensorflow-gpu
 RUN conda install -c anaconda tensorflow-gpu=1.12.0
@@ -62,7 +55,12 @@ WORKDIR /oss/tf-models/research
 RUN /oss/protobuf/bin/protoc ./object_detection/protos/*.proto --python_out=.
 RUN python setup.py install
 
-# List packages
+# Purge conda cache
+RUN conda clean -a
+
+# Check environment
+RUN python --version
+RUN conda --version
 RUN conda list
 
 # Remove temp and cache folders

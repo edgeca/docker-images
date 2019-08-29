@@ -1,11 +1,17 @@
 build-essential
+bzip2
+ca-certificates
+git
 libglib2.0
 libsm6
 libtesseract-dev
 libxext6
+libxrender1
+mercurial
 openjdk-8-jdk
 poppler-utils
 software-properties-common
+subversion
 tesseract-ocr
 unpaper
 unzip
