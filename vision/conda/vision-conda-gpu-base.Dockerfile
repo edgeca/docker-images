@@ -10,7 +10,7 @@ RUN cat /etc/os-release
 RUN conda update conda
 RUN conda install python=3.6
 RUN python --version
-RUN conda version
+RUN conda --version
 
 # Install tensorflow-gpu
 RUN conda install -c anaconda tensorflow-gpu=1.12.0
