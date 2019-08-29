@@ -1,0 +1,13 @@
+build-essential
+curl
+libglib2.0
+libsm6
+libtesseract-dev
+libxext6
+openjdk-8-jdk
+poppler-utils
+software-properties-common
+tesseract-ocr
+unpaper
+unzip
+wget
