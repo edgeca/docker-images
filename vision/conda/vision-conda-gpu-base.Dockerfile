@@ -34,6 +34,7 @@ RUN conda install python=3.6
 RUN conda install -c anaconda tensorflow-gpu=1.12.0
 
 # Install python packages
+WORKDIR /install
 RUN pip install -q --no-cache-dir -r python-requirements.txt
 
 # Download OSS projects
@@ -56,7 +57,7 @@ RUN /oss/protobuf/bin/protoc ./object_detection/protos/*.proto --python_out=.
 RUN python setup.py install
 
 # Purge conda cache
-RUN conda clean -a
+RUN conda clean -afy
 
 # Check environment
 RUN python --version
