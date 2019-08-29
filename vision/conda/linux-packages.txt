@@ -1,5 +1,4 @@
 build-essential
-curl
 libglib2.0
 libsm6
 libtesseract-dev
