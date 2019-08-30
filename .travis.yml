@@ -11,5 +11,6 @@ jobs:
         - cd vision/conda
         - docker build -t niacainfosys/vision-conda-gpu-base -f vision-conda-gpu-base.Dockerfile .
       script:
+        - docker run niacainfosys/vision-conda-gpu-base /bin/bash -c "cd /; df -h; find . -type d  -exec du -h {} + | sort -r -h | head -10"
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push niacainfosys/vision-conda-gpu-base
