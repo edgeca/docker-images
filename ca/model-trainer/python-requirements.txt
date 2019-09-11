@@ -17,7 +17,7 @@ h5py==2.6.0
 Keras==2.0.3
 nltk==3.2.2
 pandas==0.19.2
-psycopg2==2.7.1
+psycopg2==2.7.7
 pydot==1.2.3
 pydot_ng==1.0.0
 pyenchant==1.6.8
