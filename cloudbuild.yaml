@@ -1,4 +1,0 @@
-steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'niacainfosys/vision-workbench-base:1.2.0', '-f', 'vision-workbench-base.Dockerfile', '.']
-  dir: 'vision/workbench'
