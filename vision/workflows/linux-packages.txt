@@ -1,4 +1,5 @@
 build-essential
+curl
 g++
 gcc-6
 libreoffice
