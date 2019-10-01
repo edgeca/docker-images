@@ -1,5 +1,5 @@
 FROM python:3.6.9-slim-buster
-RUN apt-get update && apt-get install -y enchant graphviz gcc g++ libmagic-dev libpq-dev
+RUN apt-get update && apt-get install -y enchant graphviz gcc g++ libmagic-dev libpq-dev openldap-devel python36-devel openssl
 ADD . /install
 WORKDIR /install
 RUN pip install -q --no-cache-dir -r python-requirements.txt
