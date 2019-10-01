@@ -42,3 +42,7 @@ pyyaml
 python-crontab
 paramiko
 datefinder==0.7.0
+PyJWT==1.7.1
+Flask-JWT-Extended==3.10.0
+pyOpenSSL==19.0.0
+python-ldap==3.2.0
