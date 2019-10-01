@@ -6,13 +6,13 @@ services:
 
 jobs:
   include:
-    - stage: build
-      before_install:
-        - cd ca/api
-        - docker build -t niacainfosys/ca-api-base:1.6.1.1 -f ca-api-base.Dockerfile .
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/ca-api-base:1.6.1.1
+    #- stage: build
+    #  before_install:
+    #    - cd ca/api
+    #    - docker build -t niacainfosys/ca-api-base:1.6.1.1 -f ca-api-base.Dockerfile .
+    #  script:
+    #    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    #    - docker push niacainfosys/ca-api-base:1.6.1.1
     - stage: build
       before_install:
         - cd ca/workbench
@@ -20,10 +20,10 @@ jobs:
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push niacainfosys/ca-workbench-base:1.6.1.1
-    - stage: build
-      before_install:
-        - cd ca/model-trainer
-        - docker build -t niacainfosys/ca-model-trainer-base:1.6.1.1 -f ca-model-trainer-base.Dockerfile .
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/ca-model-trainer-base:1.6.1.1
+    #- stage: build
+    #  before_install:
+    #    - cd ca/model-trainer
+    #    - docker build -t niacainfosys/ca-model-trainer-base:1.6.1.1 -f ca-model-trainer-base.Dockerfile .
+    #  script:
+    #    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    #    - docker push niacainfosys/ca-model-trainer-base:1.6.1.1
