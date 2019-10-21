@@ -1,0 +1,6 @@
+enchant
+graphviz
+gcc
+g++
+libmagic-dev
+libpq-dev

@@ -42,3 +42,4 @@ pyyaml
 python-crontab
 paramiko
 datefinder==0.7.0
+matplotlib
