@@ -21,13 +21,13 @@ RUN ls /oss/kenlm/build/bin
 ENV PATH /oss/kenlm/build/bin/:${PATH}
 
 # Set python
+WORKDIR /install
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pip
 
 # Install python packages
 RUN pip install -q --no-cache-dir -r python-requirements.txt
 
 # Download OSS projects
-WORKDIR /install
 RUN wget -q https://github.com/cocodataset/cocoapi/archive/master.zip -O cocoapi.zip && \
     wget -q https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip -O protobuf.zip && \
     wget -q https://github.com/tensorflow/models/archive/59f7e80ac8ad54913663a4b63ddf5a3db3689648.zip -O tensorflow-models.zip

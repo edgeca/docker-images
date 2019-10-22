@@ -72,6 +72,7 @@ RUN ls /oss/kenlm/build/bin
 ENV PATH /oss/kenlm/build/bin/:${PATH}
 
 # Set python
+WORKDIR /install
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pip
 
 # Set CUDA related library path
