@@ -1,6 +1,8 @@
 build-essential
+cmake
 libglib2.0
 libsm6
+libsqlite3-dev
 libtesseract-dev
 libxext6
 openjdk-8-jdk
