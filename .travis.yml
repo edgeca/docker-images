@@ -14,3 +14,11 @@ jobs:
         - docker run niacainfosys/vision-api-base:1.4.0 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push niacainfosys/vision-api-base:1.4.0
+    - stage: build
+      before_install:
+        - cd vision/api
+        - docker build -t niacainfosys/vision-api-gpu-base:1.4.0 -f vision-api-gpu-base.Dockerfile .
+      script:
+        - docker run niacainfosys/vision-api-gpu-base:1.4.0 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push niacainfosys/vision-api-gpu-base:1.4.0
