@@ -13,10 +13,6 @@ RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --n
 RUN apt-get clean && apt-get -qq update && apt-get -qq upgrade
 
 # Install boost and kenlm
-RUN wget -q https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.tar.gz && \
-	tar -xvzf boost_1_61_0.tar.gz && cd boost_1_61_0 && ./bootstrap.sh > install_log && \
-	./b2 > install_log && ./b2 install && export LD_LIBRARY_PATH=LD_LIBRARY_PATH:"/usr/local/lib"
-WORKDIR /install
 RUN wget -q https://kheafield.com/code/kenlm.tar.gz && \
 	tar -xvzf kenlm.tar.gz && mkdir -p kenlm/build && cd kenlm/build && cmake .. && make -j 4
 
