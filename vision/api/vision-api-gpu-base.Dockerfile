@@ -64,7 +64,7 @@ RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --n
 # Update linux packages
 RUN apt-get clean && apt-get -qq update && apt-get -qq upgrade
 
-# Install boost and kenlm
+# Install kenlm
 WORKDIR /oss
 RUN wget -q https://kheafield.com/code/kenlm.tar.gz && \
 	tar -xvzf kenlm.tar.gz && mkdir -p kenlm/build && cd kenlm/build && cmake .. && make -j 4
