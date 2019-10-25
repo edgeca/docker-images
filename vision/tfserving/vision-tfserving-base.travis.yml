@@ -5,9 +5,9 @@ services:
 
 before_install:
   - cd vision/tfserving
-  - docker build -t niacainfosys/vision-tfserving-base:1.2.0 -f vision-tfserving-base.Dockerfile .
+  - docker build -t niacainfosys/vision-tfserving-base:1.4.0 -f vision-tfserving-base.Dockerfile .
 
 script:
-  - docker run niacainfosys/vision-tfserving-base:1.2.0 /bin/bash -c "python --version; pip list; apt list --installed"
+  - docker run niacainfosys/vision-tfserving-base:1.4.0 /bin/bash -c "python --version; pip list; apt list --installed"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push niacainfosys/vision-tfserving-base:1.2.0
+  - docker push niacainfosys/vision-tfserving-base:1.4.0
