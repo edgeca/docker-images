@@ -5,18 +5,11 @@ services:
   - docker
 
 jobs:
-  include:
+  include:        
     - stage: build
       before_install:
-        - cd ca/workbench
-        - docker build -t niacainfosys/ca-workbench-base:nightly -f ca-workbench-base.Dockerfile .
+        - cd ca/search
+        - docker build -t niacainfosys/ca-search-base:1.6.1 -f ca-search-base.Dockerfile .
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/ca-workbench-base:nightly
-    - stage: build
-      before_install:
-        - cd ca/model-trainer
-        - docker build -t niacainfosys/ca-model-trainer-base:nightly -f ca-model-trainer-base.Dockerfile .
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/ca-model-trainer-base:nightly
+        - docker push niacainfosys/ca-search-base:1.6.1
