@@ -50,3 +50,4 @@ requests-aws4auth==0.9
 urllib3==1.25.6
 elasticsearch==7.0.5
 flask_cors
+python-dateutil<2.8.1
