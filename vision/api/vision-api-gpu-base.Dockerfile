@@ -112,6 +112,9 @@ RUN wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corp
     wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/misc/perluniprops.zip && \
     unzip perluniprops.zip -d /usr/lib/nltk_data/misc/
 
+# Set Env variables
+RUN export TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata
+
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
 WORKDIR /
