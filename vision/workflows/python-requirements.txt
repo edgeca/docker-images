@@ -12,3 +12,5 @@ scikit-learn==0.20.2
 tiffcapture
 elasticsearch==7.0.5
 requests-aws4auth==0.9
+words2num==0.2.3
+pyspellchecker==0.5.2
