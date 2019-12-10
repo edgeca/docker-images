@@ -3,6 +3,14 @@ FROM ubuntu:18.04
 # Set non-interactive for linux packages installation
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set pip configuration
+ARG PIP_INDEX
+ARG PIP_INDEX_URL
+ARG PIP_TRUSTED_HOST
+ENV PIP_INDEX=${PIP_INDEX}
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+ENV PIP_TRUSTED_HOST=${PIP_TRUSTED_HOST}
+
 ADD . /install
 WORKDIR /install
 RUN mkdir /oss
@@ -11,12 +19,12 @@ RUN mkdir /oss
 RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends
 
 # Update linux packages
-RUN apt-get clean && apt-get -qq update && apt-get -qq upgrade
+RUN apt-get clean && apt-get -qq update && apt-get -qq -y upgrade
 
 # Install kenlm
 WORKDIR /oss
 RUN wget -q https://kheafield.com/code/kenlm.tar.gz && \
-	tar -xvzf kenlm.tar.gz && mkdir -p kenlm/build && cd kenlm/build && cmake .. && make -j 4
+    tar -xvzf kenlm.tar.gz && mkdir -p kenlm/build && cd kenlm/build && cmake .. && make -j 4
 RUN ls /oss/kenlm/build/bin
 ENV PATH /oss/kenlm/build/bin/:${PATH}
 
@@ -56,6 +64,9 @@ RUN wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corp
 
 # Set Env variables
 ENV TESSDATA_PREFIX /usr/share/tesseract-ocr/4.00/tessdata
+
+# List the installed linux packages
+RUN dpkg -l
 
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
