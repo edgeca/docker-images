@@ -65,9 +65,6 @@ RUN wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corp
 # Set Env variables
 ENV TESSDATA_PREFIX /usr/share/tesseract-ocr/4.00/tessdata
 
-# List the installed linux packages
-RUN dpkg -l
-
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
 WORKDIR /

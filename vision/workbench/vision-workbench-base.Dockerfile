@@ -29,9 +29,6 @@ RUN pip install -q --no-cache-dir -r python-requirements.txt
 COPY csp.py /usr/local/lib/python3.6/site-packages/flask_csp/
 COPY csp.py /usr/local/lib/python3.6/dist-packages/flask_csp/
 
-# List the installed linux packages
-RUN dpkg -l
-
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
 WORKDIR /

@@ -31,9 +31,6 @@ RUN GRPC_HEALTH_PROBE_VERSION=v0.3.0 && \
     wget -qO/bin/grpc_health_probe https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/${GRPC_HEALTH_PROBE_VERSION}/grpc_health_probe-linux-amd64 && \
     chmod +x /bin/grpc_health_probe
 
-# List the installed linux packages
-RUN dpkg -l
-
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
 WORKDIR /
