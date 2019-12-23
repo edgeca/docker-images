@@ -9,6 +9,7 @@ libpcre3
 libpcre3-dev
 libsm6
 libtesseract4
+libtiff
 libxext6
 locales
 poppler-utils
