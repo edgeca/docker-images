@@ -8,6 +8,7 @@ WORKDIR /install
 # Install linux packages
 RUN apt-get -qq update \
     && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends
+RUN apt-get install libtiff-tools
 
 # Download nltk data
 RUN mkdir -p /root/nltk_data
