@@ -2,6 +2,7 @@ cython
 jamspell==0.0.11
 libtiff
 nltk==3.2.2
+numpy
 opencv-python>=3.4.2
 pandas
 pdf2image==1.10.0
