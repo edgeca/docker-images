@@ -8,7 +8,6 @@ WORKDIR /install
 # Install linux packages
 RUN apt-get -qq update \
     && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends
-RUN apt-get install libtiff-tools
 
 # Download nltk data
 RUN mkdir -p /root/nltk_data
@@ -37,6 +36,11 @@ RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pi
 
 # Install python packages
 RUN pip install --no-cache-dir -r python-requirements.txt
+
+# libtiff
+RUN apt-get install libtiff-tools
+RUN pip install numpy
+RUN pip install libtiff
 
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
