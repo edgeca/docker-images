@@ -38,9 +38,9 @@ RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pi
 RUN pip install --no-cache-dir -r python-requirements.txt
 
 # libtiff
-RUN apt-get install libtiff-tools
+RUN apt-get install libtiff-tools libtiff5
 RUN pip install numpy
-RUN pip install libtiff5
+RUN pip install libtiff
 
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
