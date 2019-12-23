@@ -40,7 +40,7 @@ RUN pip install --no-cache-dir -r python-requirements.txt
 # libtiff
 RUN apt-get install libtiff-tools
 RUN pip install numpy
-RUN pip install libtiff
+RUN pip install libtiff5
 
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean
