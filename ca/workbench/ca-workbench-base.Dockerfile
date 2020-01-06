@@ -1,7 +1,7 @@
 FROM python:3.6.9-slim-buster
 RUN mkdir -p /usr/share/man/man1/ \
      && echo 'deb http://deb.debian.org/debian stretch main'  > /etc/apt/sources.list.d/stretch.list \
-     && apt-get update && apt-get install -y enchant graphviz gcc g++ libmagic-dev libpq-dev openjdk-8-jre openssl build-essential python3-dev libldap2-dev libsasl2-dev ldap-utils python-tox lcov valgrind
+     && apt-get update && apt-get install -y enchant graphviz gcc g++ libmagic-dev libpq-dev openjdk-8-jre openssl build-essential python3-dev libldap2-dev libsasl2-dev ldap-utils python-tox lcov valgrind libxmlsec1 libxmlsec1-openssl xmlsec1
 
 RUN python --version
 ADD . /install
