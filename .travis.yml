@@ -38,3 +38,11 @@ jobs:
         - docker run niacainfosys/vision-workbench-base:1.5.0 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push niacainfosys/vision-workbench-base:1.5.0
+    - stage: build
+      before_install:
+        - cd vision/workflows
+        - docker build -t niacainfosys/vision-workflows-base:1.5.0 -f vision-workflows-base.Dockerfile .
+      script:
+        - docker run niacainfosys/vision-workflows-base:1.5.0 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push niacainfosys/vision-workflows-base:1.5.0
