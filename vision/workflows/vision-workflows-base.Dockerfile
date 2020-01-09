@@ -9,6 +9,8 @@ WORKDIR /install
 RUN apt-get -qq update \
     && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends
 
+WORKDIR /install
+
 # Download nltk data
 RUN mkdir -p /root/nltk_data
 RUN mkdir /root/nltk_data/misc
