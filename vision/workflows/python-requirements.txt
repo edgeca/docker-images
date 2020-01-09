@@ -13,4 +13,5 @@ PyYAML==3.13
 requests
 scikit-image==0.15.0
 scikit-learn==0.20.2
+tesserocr
 tiffcapture
