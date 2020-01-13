@@ -61,11 +61,6 @@ RUN wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corp
     unzip punkt.zip -d /usr/lib/nltk_data/tokenizers/ && \
     wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/misc/perluniprops.zip && \
     unzip perluniprops.zip -d /usr/lib/nltk_data/misc/
-    
-# Download pgeodata
-RUN mkdir ~/pgeocode_data
-RUN wget http://download.geonames.org/export/zip/IN.zip && \
-    unzip IN.zip -d ~/pgeocode_data/
 
 # Set Env variables
 ENV TESSDATA_PREFIX /usr/share/tesseract-ocr/4.00/tessdata
