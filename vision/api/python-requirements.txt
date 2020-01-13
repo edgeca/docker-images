@@ -20,6 +20,7 @@ openpyxl==3.0.0
 pandas==0.24.2
 PassportEye==1.4.1
 pdf2image==1.9.0
+pdfminer.six==20200104
 pdfplumber==0.5.10
 Pillow==5.2.0
 pgeocode==0.2.0
