@@ -38,7 +38,7 @@ RUN pip install -q --no-cache-dir -r python-requirements.txt
 # Download OSS projects
 RUN wget -q https://github.com/cocodataset/cocoapi/archive/master.zip -O cocoapi.zip && \
     wget -q https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip -O protobuf.zip && \
-    wget -q https://github.com/tensorflow/models/archive/59f7e80ac8ad54913663a4b63ddf5a3db3689648.zip -O tensorflow-models.zip
+    wget -q https://github.com/tensorflow/models/archive/r1.12.0.zip -O tensorflow-models.zip
 RUN unzip -q cocoapi.zip && unzip -q protobuf.zip -d ./protobuf && unzip -q tensorflow-models.zip -d ./tensorflow-models
 
 # Install cocoapi
@@ -47,7 +47,7 @@ WORKDIR /oss/cocoapi/PythonAPI
 RUN python setup.py install
 
 # Install tensorflow object detection
-RUN mv /install/tensorflow-models/models-59f7e80ac8ad54913663a4b63ddf5a3db3689648 /oss/tf-models && mv /install/protobuf /oss
+RUN mv /install/tensorflow-models/models-r1.12.0 /oss/tf-models && mv /install/protobuf /oss
 WORKDIR /oss/tf-models/research
 RUN /oss/protobuf/bin/protoc ./object_detection/protos/*.proto --python_out=.
 RUN python setup.py install
