@@ -1,4 +1,5 @@
 build-essential
+curl
 g++
 gcc-6
 libreoffice
@@ -11,6 +12,7 @@ libsm6
 libtesseract4
 libxext6
 locales
+netstat
 poppler-utils
 postgresql-client
 python3
