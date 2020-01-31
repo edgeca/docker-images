@@ -12,7 +12,7 @@ libsm6
 libtesseract4
 libxext6
 locales
-netstat
+net-tools
 poppler-utils
 postgresql-client
 python3
