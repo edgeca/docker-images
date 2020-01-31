@@ -8,7 +8,7 @@ libsm6
 libsqlite3-dev
 libtesseract-dev
 libxext6
-netstat
+net-tools
 openjdk-8-jdk
 poppler-utils
 python3
