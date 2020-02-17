@@ -1,0 +1,5 @@
+cython
+PyYAML>=3.13
+grpcio==1.19.0
+grpcio-health-checking==1.19.0
+tensorflow-serving-api==1.14.0

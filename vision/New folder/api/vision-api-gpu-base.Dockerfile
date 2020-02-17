@@ -102,6 +102,16 @@ WORKDIR /oss/tf-models/research
 RUN /oss/protobuf/bin/protoc ./object_detection/protos/*.proto --python_out=.
 RUN python setup.py install
 
+# Download nltk_data
+WORKDIR /install
+RUN mkdir /usr/lib/nltk_data /usr/lib/nltk_data/corpora /usr/lib/nltk_data/misc /usr/lib/nltk_data/tokenizers
+RUN wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/words.zip && \
+    unzip words.zip -d /usr/lib/nltk_data/corpora/ && \
+    wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip && \
+    unzip punkt.zip -d /usr/lib/nltk_data/tokenizers/ && \
+    wget https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/misc/perluniprops.zip && \
+    unzip perluniprops.zip -d /usr/lib/nltk_data/misc/
+
 # Set Env variables
 ENV TESSDATA_PREFIX /usr/share/tesseract-ocr/4.00/tessdata
 
