@@ -10,6 +10,5 @@ jobs:
         - cd lab
         - docker build -t niacainfosys/rhel7-ubi:1.0 -f rhel7-ubi.Dockerfile .
       script:
-        - docker run niacainfosys/rhel7-ubi:1.0  /bin/bash -c "python --version; pip list; "
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push niacainfosys/rhel7-ubi:1.0
