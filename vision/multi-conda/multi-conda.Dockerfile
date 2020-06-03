@@ -13,6 +13,9 @@ RUN wget \
     && rm -f Miniconda3-latest-Linux-x86_64.sh 
 RUN conda --version
 
+# change shell to bash
+SHELL ["/bin/bash", "-c"]
+
 # tf 1.12.0 environment
 RUN conda create --name tf1.12 python=3.6
 RUN conda activate tf1.12
