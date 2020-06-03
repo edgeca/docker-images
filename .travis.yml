@@ -8,8 +8,8 @@ jobs:
   include:
     - stage: build
       before_install:
-        - cd vision/multi-conda
-        - docker build -t niacainfosys/multi-conda:1.0 -f multi-conda.Dockerfile .
+        - cd vision/cuda10.1
+        - docker build -t niacainfosys/cuda:10.1 -f cuda10.1.Dockerfile .
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/multi-conda:1.0
+        - docker push niacainfosys/cuda:10.1
