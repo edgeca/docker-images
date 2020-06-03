@@ -1,4 +1,5 @@
 FROM nvidia/cuda:10.1-devel-ubuntu18.04
+FROM nvidia/cuda:10.0-devel-ubuntu18.04 as cuda10
 
 # Set non-interactive for linux packages installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -13,8 +14,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
-ENV NVIDIA_REQUIRE_CUDA "cuda>=10.1"
+ENV NVIDIA_REQUIRE_CUDA "cuda>=10.0"
 ENV NCCL_VERSION 2.4.8
+
+# COPY from CUDA10
+COPY --from=cuda10 /usr/local/cuda-10.0 /usr/local/cuda-10.0
 
 ADD . /install
 WORKDIR /install
@@ -26,20 +30,17 @@ RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --n
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pip
 RUN pip install virtualenv wheel
 
-# Set CUDA related library path
-ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs
-
 # install tf 1.15
 RUN mkdir -p /venv
 WORKDIR /venv
 RUN virtualenv -p /usr/bin/python3 tf1.15
+RUN cp /install/cuda10.0.path /venv/tf1.15/
 RUN /bin/bash -c "source tf1.15/bin/activate && pip install -q --no-cache-dir tensorflow-gpu==1.15.0 && deactivate"
 
 # install tf 2.2
-RUN mkdir -p /venv
 WORKDIR /venv
 RUN virtualenv -p /usr/bin/python3 tf2.2
+RUN cp /install/cuda10.1.path /venv/tf2.2/
 RUN /bin/bash -c "source tf2.2/bin/activate && pip install -q --no-cache-dir tensorflow-gpu==2.2.0 && deactivate"
 
 # Remove temp and cache folders
