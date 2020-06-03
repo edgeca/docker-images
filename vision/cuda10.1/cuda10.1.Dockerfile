@@ -1,6 +1,17 @@
 # SRC - https://gitlab.com/nvidia/container-images/cuda/-/tree/ubuntu18.04/10.1
 FROM ubuntu:18.04
 
+# Set non-interactive for linux packages installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set pip configuration
+ARG PIP_INDEX
+ARG PIP_INDEX_URL
+ARG PIP_TRUSTED_HOST
+ENV PIP_INDEX=${PIP_INDEX}
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+ENV PIP_TRUSTED_HOST=${PIP_TRUSTED_HOST}
+
 # Set up cuda 10.1
 
 RUN apt-get -qq update && apt-get install -y --no-install-recommends gnupg2 curl ca-certificates && \
@@ -51,9 +62,6 @@ RUN apt-get -qq update && apt-get install -y --no-install-recommends \
         libcudnn7-dev=$CUDNN_VERSION-1+cuda10.1 && \
         apt-mark hold libcudnn7
 
-# Set non-interactive for linux packages installation
-ENV DEBIAN_FRONTEND=noninteractive
-
 ADD . /install
 WORKDIR /install
 
@@ -71,13 +79,13 @@ ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:$LD
 RUN mkdir -p /venv
 WORKDIR /venv
 RUN virtualenv -p /usr/bin/python3 tf1.15
-RUN source tf1.15/bin/activate && pip install -q --no-cache-dir tensorflow-gpu==1.15.0 && deactivate
+RUN /bin/bash -c "source tf1.15/bin/activate && pip install -q --no-cache-dir tensorflow-gpu==1.15.0 && deactivate"
 
 # install tf 2.2
 RUN mkdir -p /venv
 WORKDIR /venv
 RUN virtualenv -p /usr/bin/python3 tf2.2
-RUN source tf2.2/bin/activate && pip install -q --no-cache-dir tensorflow-gpu==2.2.0 && deactivate
+RUN /bin/bash -c "source tf2.2/bin/activate && pip install -q --no-cache-dir tensorflow-gpu==2.2.0 && deactivate"
 
 # Remove temp and cache folders
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && rm -rf /root/.cache/* && rm -rf /install && apt-get clean

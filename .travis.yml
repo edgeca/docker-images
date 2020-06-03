@@ -9,7 +9,7 @@ jobs:
     - stage: build
       before_install:
         - cd vision/cuda10.1
-        - docker build -t niacainfosys/cuda:10.1 -f cuda10.1.Dockerfile .
+        - docker build -t niacainfosys/cuda:10.1 -f cuda10.1_frombase.Dockerfile .
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push niacainfosys/cuda:10.1
