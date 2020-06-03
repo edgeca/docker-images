@@ -24,10 +24,11 @@ RUN apt-get -qq update && xargs -a linux-packages.txt apt-get -qq install -y --n
 
 # Set python
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pip
-RUN pip install virtualenv
+RUN pip install virtualenv wheel
 
 # Set CUDA related library path
 ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs
 
 # install tf 1.15
 RUN mkdir -p /venv
