@@ -15,6 +15,7 @@ RUN conda --version
 
 # change shell to bash
 SHELL ["/bin/bash", "-c"]
+RUN conda init bash
 
 # tf 1.12.0 environment
 RUN conda create --name tf1.12 python=3.6
