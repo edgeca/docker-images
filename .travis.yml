@@ -24,9 +24,9 @@ jobs:
     #    - docker push niacainfosys/ca-model-trainer-base:1.6.1.1
     - stage: build
       before_install:
-        - cd ca/search-rq-worker
-        - docker build -t niacainfosys/ca-search-rq-worker-base:0.1 -f ca-search-rq-worker-base.Dockerfile .
+        - cd ca/workbench-rq-worker
+        - docker build -t niacainfosys/ca-workbench-rq-worker-base:0.1 -f ca-workbench-rq-worker-base.Dockerfile .
       script:
-        - docker run niacainfosys/ca-search-rq-worker-base:0.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+        - docker run niacainfosys/ca-workbench-rq-worker-base:0.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/ca-search-rq-worker-base:0.1
+        - docker push niacainfosys/ca-workbench-rq-worker-base:0.1
