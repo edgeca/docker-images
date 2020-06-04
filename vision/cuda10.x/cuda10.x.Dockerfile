@@ -1,5 +1,5 @@
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 as cuda10.0
-FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 
 # Set non-interactive for linux packages installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,7 +23,7 @@ RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pi
 RUN pip install virtualenv wheel
 
 # Set CUDA Path
-ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:/usr/local/cuda-10.2/lib64:/usr/local/cuda-10.0/lib64
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:/usr/local/cuda-10.1/lib64:/usr/local/cuda-10.0/lib64
 
 # install tf 1.15
 RUN mkdir -p /venv
