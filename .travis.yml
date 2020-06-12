@@ -6,22 +6,22 @@ services:
 
 jobs:
   include:
-    #- stage: build
-    #  before_install:
-    #    - cd ca/workbench
-    #    - docker build -t niacainfosys/ca-workbench-base:1.6.1.21 -f ca-workbench-base.Dockerfile .
-    #  script:
-    #    - docker run niacainfosys/ca-workbench-base:1.6.1.21 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
-    #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    #    - docker push niacainfosys/ca-workbench-base:1.6.1.21
-    #- stage: build
-    #  before_install:
-    #    - cd ca/model-trainer
-    #    - docker build -t niacainfosys/ca-model-trainer-base:1.6.1.1 -f ca-model-trainer-base.Dockerfile .
-    #  script:
-    #    - docker run niacainfosys/ca-model-trainer-base:1.6.1.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
-    #    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    #    - docker push niacainfosys/ca-model-trainer-base:1.6.1.1
+    - stage: build
+      before_install:
+        - cd ca/workbench
+        - docker build -t niacainfosys/ca-workbench-base:1.6.1.21 -f ca-workbench-base.Dockerfile .
+      script:
+        - docker run niacainfosys/ca-workbench-base:1.6.1.21 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push niacainfosys/ca-workbench-base:1.6.1.21
+    - stage: build
+      before_install:
+        - cd ca/model-trainer
+        - docker build -t niacainfosys/ca-model-trainer-base:1.6.1.1 -f ca-model-trainer-base.Dockerfile .
+      script:
+        - docker run niacainfosys/ca-model-trainer-base:1.6.1.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push niacainfosys/ca-model-trainer-base:1.6.1.1
     - stage: build
       before_install:
         - cd ca/workbench-rq-worker
