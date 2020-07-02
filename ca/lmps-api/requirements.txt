@@ -1,0 +1,21 @@
+certifi==2018.8.24
+cffi==1.14.0
+click==7.1.2
+cryptography==2.9.2
+Flask==1.1.2
+Flask-Cors==3.0.8
+Flask-SSLify==0.1.5
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+psycopg2-binary
+# psycopg2==2.8.5
+pycparser==2.20
+six==1.15.0
+Werkzeug==1.0.1
+wincertstore==0.2
+pandas
+kubernetes==9.0.0
+elasticsearch==7.0.5
+requests-aws4auth==0.9
+
