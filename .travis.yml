@@ -6,11 +6,19 @@ services:
 
 jobs:
   include:
+  # - stage: build
+  #   before_install:
+  #     - cd ca/lmps-api
+  #     - docker build -t niacainfosys/ca-lmps-api-base:0.1 -f ca-lmps-api.Dockerfile .
+  #   script:
+  #     - docker run niacainfosys/ca-lmps-api-base:0.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+  #     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  #     - docker push niacainfosys/ca-lmps-api-base:0.1
     - stage: build
       before_install:
-        - cd ca/lmps-api
-        - docker build -t niacainfosys/ca-lmps-api-base:0.1 -f ca-lmps-api.Dockerfile .
+        - cd ca
+        - docker build -t ca-test-vision-api-base:0.1 -f ca-test-vision-api .
       script:
-        - docker run niacainfosys/ca-lmps-api-base:0.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
+        - docker run ca-test-vision-api-base:0.1 /bin/bash -c "python --version; pip list; java -version; apt list --installed"
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push niacainfosys/ca-lmps-api-base:0.1
+        - docker push ca-test-vision-api-base:0.1
