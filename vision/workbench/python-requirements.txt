@@ -1,4 +1,4 @@
-cryptography==2.7
+cryptography==3.2
 Cython==0.29
 flask-csp==0.9
 Flask-SSLify==0.1.5
