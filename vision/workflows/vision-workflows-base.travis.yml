@@ -8,6 +8,6 @@ before_install:
   - docker build -t niacainfosys/vision-workflows-base:1.2.0.1 -f vision-workflows-base.Dockerfile .
 
 script:
-  - docker run niacainfosys/vision-workflows-base:1.2.0 /bin/bash -c "python --version; pip list; apt list --installed"
+  - docker run niacainfosys/vision-workflows-base:1.2.0.1 /bin/bash -c "python --version; pip list; apt list --installed"
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push niacainfosys/vision-workflows-base:1.2.0
+  - docker push niacainfosys/vision-workflows-base:1.2.0.1
