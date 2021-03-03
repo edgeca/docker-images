@@ -3,7 +3,7 @@ curl
 g++
 gcc
 libreoffice
-libglib2.0
+libglib2.0-0
 liblept5
 libpcre3
 libpcre3-dev
