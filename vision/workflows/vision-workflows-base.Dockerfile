@@ -5,7 +5,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ADD . /install
 WORKDIR /install
 
-RUN apt-get update -y
 # Install linux packages
 RUN apt-get -qq update \
     && xargs -a linux-packages.txt apt-get -qq install -y --no-install-recommends
