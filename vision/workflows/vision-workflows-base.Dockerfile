@@ -34,7 +34,7 @@ RUN apt-get clean && apt-get -qq update && apt-get -qq upgrade
 # Set python
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python && ln -s /usr/bin/pip3 pip
 
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip==20.2 
 
 # Install python packages
 RUN pip install --no-cache-dir -r python-requirements.txt
